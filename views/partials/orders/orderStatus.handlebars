@@ -3,6 +3,9 @@
    {{burgerOption}}
 
   <button class="change-orderStatus" data-id="{{id}}" data-newOrder="{{orderPlaced}}">
-    {{#if orderPlaced}}COOK!{{else}}SERVE!{{/if}}
+    {{#if orderPlaced}}COOK!{{/if}}
+     {{#if cooking}}SERVE!{{/if}}
+     {{#if served}}SAY BYE!{{/if}}
   </button>
+
 

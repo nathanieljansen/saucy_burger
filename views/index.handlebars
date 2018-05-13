@@ -26,7 +26,8 @@
 <h2>New Burger Order!</h2>
 
 <ul>
-  {{#each orders}} {{#unless cooking}} {{> orders/orderStatus orderPlaced=true}} {{/unless}} {{/each}}
+   {{#each orders}} {{#if orderPlaced}} {{> orders/orderStatus orderPlaced=true}} {{/if}} {{/each}}
+  
 </ul>
 
 <h2>Burgers are Cooking!</h2>
@@ -38,6 +39,6 @@
 <h2>Burgers are Served!</h2>
 
 <ul>
-  {{#each orders}} {{#if served}} {{> orders/orderStatus cooking=false}} {{/if}} {{/each}}
+  {{#each orders}} {{#if served}} {{> orders/orderStatus orderPlaced=false}} {{/if}} {{/each}}
 </ul>
 
