@@ -51,9 +51,9 @@ $(function () {
       case "served":
         return sayBye(id)
       case "cooking":
-        return cooking(id)
+        return serveBurger(id)
       case "orderPlaced":
-        return orderPlaced()
+        return cooking()
       default:
         return
     }
@@ -75,6 +75,9 @@ $(function () {
   }
 
   function cooking(id) {
+    if (err) {
+      return console.log(err);
+    }
     $.ajax("/api/orders/" + id, {
       type: "PUT"
     }).then(
@@ -87,7 +90,7 @@ $(function () {
     console.log("Work")
   }
 
-  function orderPlaced(id) {
+  function serveBurger(id) {
     console.log("Working")
   }
 });
