@@ -5,7 +5,7 @@ $(function () {
     var newOrder = $(this).data("newOrder");
 
     var newOrderState = {
-      sleepy: newOrder
+      orderPlace: newOrder
     };
 
     // Send the PUT request.
@@ -26,8 +26,8 @@ $(function () {
     event.preventDefault();
 
     var newOrder = {
-      custName: $("#customerName").val().trim(),
-      burgerName: $("#burgerName").val().trim(),
+      customerName: $("#customerName").val().trim(),
+      burgerOption: $("#burgerName").val().trim(),
     };
 
     // Send the POST request.
@@ -43,10 +43,26 @@ $(function () {
     );
   });
 
-  $(".serve-order").on("click", function (event) {
+  $(".change-orderStatus").on("click", function (event) {
+    var expression = $(this).attr("data-function");
     var id = $(this).data("id");
 
+    switch (expression) {
+      case "served":
+        return sayBye(id)
+      case "cooking":
+        return cooking(id)
+      case "orderPlaced":
+        return orderPlaced()
+      default:
+        return
+    }
     // Send the DELETE request.
+
+
+  });
+
+  function sayBye(id) {
     $.ajax("/api/orders/" + id, {
       type: "DELETE"
     }).then(
@@ -56,5 +72,22 @@ $(function () {
         location.reload();
       }
     );
-  });
+  }
+
+  function cooking(id) {
+    $.ajax("/api/orders/" + id, {
+      type: "PUT"
+    }).then(
+      function () {
+        console.log("cooking that burger", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+    console.log("Work")
+  }
+
+  function orderPlaced(id) {
+    console.log("Working")
+  }
 });

@@ -2,10 +2,16 @@
   {{customerName}}
    {{burgerOption}}
 
-  <button class="change-orderStatus" data-id="{{id}}" data-newOrder="{{orderPlaced}}">
+  <button class="change-orderStatus" data-id="{{id}}" 
+  {{#if served}}data-function="served"{{/if}}
+   {{#if cooking}}data-function="cooking"{{/if}}
+   {{#if orderPlaced}}data-function="orderPlaced"{{/if}}
+  data-newOrder="{{orderPlaced}}">
+  
     {{#if orderPlaced}}COOK!{{/if}}
+    
      {{#if cooking}}SERVE!{{/if}}
      {{#if served}}SAY BYE!{{/if}}
   </button>
-
+</li>
 
