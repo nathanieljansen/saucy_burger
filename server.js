@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
-var PORT = process.env.PORT || 8080 || process.env.JAWSDB_URL;
+var PORT = process.env.JAWSDB_URL;
 
 var app = express();
 
