@@ -29,7 +29,7 @@ router.post("/api/orders", function (req, res) {
   });
 });
 
-router.put("/api/orders/:id", function (req, res) {
+router.put("/api/orders/:id/cooking", function (req, res) {
 
   var condition = "id = " + req.params.id;
 
@@ -37,8 +37,7 @@ router.put("/api/orders/:id", function (req, res) {
 
   order.update({
     cooking: true,
-    orderPlaced: false,
-    served: false
+    orderPlaced: false
   }, condition, function (result) {
     if (result.changedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
@@ -49,14 +48,14 @@ router.put("/api/orders/:id", function (req, res) {
   });
 });
 
-router.put("/api/orders/:id", function (req, res) {
+router.put("/api/orders/:id/served", function (req, res) {
 
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
 
   order.update({
-    cooking: true,
+    cooking: false,
     orderPlaced: false,
     served: true
   }, condition, function (result) {

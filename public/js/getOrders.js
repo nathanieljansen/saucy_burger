@@ -73,12 +73,8 @@ $(function () {
   }
 
   function cooking(id) {
-    if (err) {
-      return console.log(err);
-    }
-    $.ajax("/api/orders/" + id, {
+    $.ajax("/api/orders/" + id + '/cooking', {
       type: "PUT",
-      data: newOrderState
     }).then(
       function () {
         console.log("cooking that burger", id);
@@ -90,7 +86,7 @@ $(function () {
   }
 
   function serveBurger(id) {
-   $.ajax("/api/orders/" + id, {
+   $.ajax("/api/orders/" + id + '/served', {
      type: "PUT"
    }).then(
      function () {
