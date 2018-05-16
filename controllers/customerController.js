@@ -36,36 +36,38 @@ router.put("/api/orders/:id", function (req, res) {
   console.log("condition", condition);
 
   order.update({
-  cooking: true,
-  orderPlaced: false
+    cooking: true,
+    orderPlaced: false,
+    served: false
   }, condition, function (result) {
-  if (result.changedRows == 0) {
-    // If no rows were changed, then the ID must not exist, so 404
-    return res.status(404).end();
-  } else {
-    res.status(200).end();
-  }
+    if (result.changedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
   });
+});
+
+router.put("/api/orders/:id", function (req, res) {
+
+  var condition = "id = " + req.params.id;
+
+  console.log("condition", condition);
+
+  order.update({
+    cooking: true,
+    orderPlaced: false,
+    served: true
+  }, condition, function (result) {
+    if (result.changedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
   });
-
-  router.put("/api/orders/:id", function (req, res) {
-
-    var condition = "id = " + req.params.id;
-
-    console.log("condition", condition);
-
-    order.update({
-      cooking: true,
-      orderPlaced: false
-    }, condition, function (result) {
-      if (result.changedRows == 0) {
-        // If no rows were changed, then the ID must not exist, so 404
-        return res.status(404).end();
-      } else {
-        res.status(200).end();
-      }
-    });
-  });
+});
 
 
 router.delete("/api/orders/:id", function (req, res) {

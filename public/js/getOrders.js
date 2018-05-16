@@ -53,9 +53,7 @@ $(function () {
       case "cooking":
         return serveBurger(id)
       case "orderPlaced":
-        return cooking()
-      default:
-        return
+        return cooking(id)
     }
     // Send the DELETE request.
 
@@ -79,7 +77,8 @@ $(function () {
       return console.log(err);
     }
     $.ajax("/api/orders/" + id, {
-      type: "PUT"
+      type: "PUT",
+      data: newOrderState
     }).then(
       function () {
         console.log("cooking that burger", id);
@@ -91,6 +90,15 @@ $(function () {
   }
 
   function serveBurger(id) {
+   $.ajax("/api/orders/" + id, {
+     type: "PUT"
+   }).then(
+     function () {
+       console.log("serving that burger", id);
+       // Reload the page to get the updated list
+       location.reload();
+     }
+   );
     console.log("Working")
   }
 });
