@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "ordersStatus_db",
+    "database": "orderStatus_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
@@ -15,6 +15,9 @@
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
+        "username": "en21t0gcs4x5t1kl",
+        "password": "enezo373m7p5026a",
+        "database": "database_production",
     "dialect": "mysql"
   }
 }
